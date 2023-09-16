@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivos para sair comigo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px 0;
+        }
+        h1 {
+            font-size: 36px;
+            margin: 10px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            font-size: 20px;
+            display: none;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 24px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .hearts {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .heart {
+            font-size: 36px;
+            color: #ff6961;
+            margin: 10px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .heart:hover {
+            color: #ff0000;
+        }
+        .descubra-motivo {
+            display: none;
+            margin-top: 20px;
+        }
+        .descubra-motivo button {
+            margin: 10px;
+        }
+        .local {
+            display: none;
+            margin-top: 20px;
+        }
+        .local input {
+            padding: 10px;
+            font-size: 18px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Motivos para sair comigo</h1>
+    </header>
+    <div class="container">
+        <div class="hearts">
+            <span class="heart" id="heart1">🥰</span>
+            <span class="heart" id="heart2">🌸</span>
+            <span class="heart" id="heart3">🔞</span>
+            <span class="heart" id="heart4">✨</span>
+            <span class="heart" id="heart5">❤️</span>
+        </div>
+        <ul id="motivosList">
+            <li>Porque falo pra krlho, e não vai ficar sem assunto.</li>
+            <li>Porque sou uma ótima ouvinte.</li>
+            <li>Porque topo tudo😏</li>
+            <li>Porque tenho senso de humor e um ótimo gosto musical.</li>
+            <li>Porque sou uma companhia divertida e sou simples.</li>
+        </ul>
+        <button id="descubraMotivoBtn">Descubra um motivo</button>
+        <div class="descubra-motivo" id="descubraMotivo">
+            Quer sair comigo? 
+            <button id="simBtn">Sim</button> 
+            <button id="naoBtn">Não</button>
+        </div>
+        <div class="local" id="local">
+            <input type="text" placeholder="Local">
+            <button id="enviarLocalBtn">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        const hearts = document.querySelectorAll('.heart');
+        const motivosList = document.getElementById('motivosList');
+        const descubraMotivoBtn = document.getElementById('descubraMotivoBtn');
+        const descubraMotivo = document.getElementById('descubraMotivo');
+        const simBtn = document.getElementById('simBtn');
+        const naoBtn = document.getElementById('naoBtn');
+        const local = document.getElementById('local');
+        const enviarLocalBtn = document.getElementById('enviarLocalBtn');
+
+        hearts.forEach((heart, index) => {
+            heart.addEventListener('click', () => {
+                const motivos = motivosList.querySelectorAll('li');
+                motivos.forEach((motivo, i) => {
+                    if (i === index) {
+                        motivo.style.display = motivo.style.display === 'block' ? 'none' : 'block';
+                    } else {
+                        motivo.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        descubraMotivoBtn.addEventListener('click', () => {
+            descubraMotivo.style.display = 'block';
+        });
+
+        simBtn.addEventListener('click', () => {
+            local.style.display = 'block';
+            descubraMotivo.style.display = 'none';
+        });
+
+        naoBtn.addEventListener('click', () => {
+            alert('Fico triste. Quem sabe na próxima?');
+        });
+
+        enviarLocalBtn.addEventListener('click', () => {
+            const localInput = document.querySelector('.local input').value;
+            if (localInput) {
+                const mensagem = `Vamos nos encontrar em' ${localInput}?`;
+                const numeroWhatsApp = '11 937781104';
+                const linkWhatsApp = `https://wa.me/${numeroWhatsApp}/?text=${encodeURIComponent(mensagem)}`;
+                window.location.href = linkWhatsApp;
+            }
+        });
+    </script>
+</body>
+</html>
